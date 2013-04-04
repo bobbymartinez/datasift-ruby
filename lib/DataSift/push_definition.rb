@@ -11,6 +11,10 @@ module DataSift
 		attr_accessor :output_type
 		#The output parameters for this Push definition.
 		attr_accessor :output_params
+		#The start time for this Push definition
+		attr_accessor :start
+		#The end time for this Push definition
+		attr_accessor :end
 
 		#Constructor. A User object is required.
 		#=== Parameters
@@ -21,6 +25,8 @@ module DataSift
 			@initial_status = ''
 			@output_type = ''
 			@output_params = {}
+			@start = 0
+			@end = 0
 		end
 
 		#Validate the output type and parameters with the DataSift API.
@@ -98,6 +104,8 @@ module DataSift
 				@output_params.each { |k,v| params[OUTPUT_PARAMS_PREFIX + k] = v }
 				# Add the initial status if it's not empty
 				params['initial_status'] = @initial_status unless @initial_status == ''
+				params['start'] = @start unless @start == 0
+				params['end'] = @end unless @end == 0
 
 				# Call the API and create a new PushSubscription from the returned
 				# object
