@@ -93,8 +93,8 @@ module DataSift
 
 				# Convert and validate the parameters as required
 				hash = hash.hash if hash.is_a? DataSift::Definition
-				start_date = DateTime.strptime(start_date, '%s') unless start_date.is_a? Date
-				end_date = DateTime.strptime(end_date, '%s') unless end_date.is_a? Date
+				start_date = DateTime.strptime(start_date, '%s') unless start_date.is_a? Date or start_date.is_a? DateTime
+			end_date = DateTime.strptime(end_date, '%s') unless end_date.is_a? Date or end_date.is_a? DateTime
 				raise InvalidDataError, 'Please supply an array of sources' unless sources.kind_of?(Array)
 
 				@playback_id  = false
